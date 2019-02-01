@@ -3,7 +3,7 @@ var adsManager;
 
 var adDisplayContainer =
   new google.ima.AdDisplayContainer(
-    document.getElementById('adContainer'),
+    document.getElementById('ad-container'),
     videoContent);
 // Must be done as the result of a user action on mobile
 adDisplayContainer.initialize();
@@ -92,7 +92,7 @@ function onContentPauseRequested() {
 function onContentResumeRequested() {
   // This function is where you should ensure that your UI is ready
   // to play content.
-  document.getElementById('adContainer').hidden = true;
+  document.getElementById('ad-wrapper').hidden = true;
   videoContent.addEventListener('ended', contentEndedListener);
   videoContent.play();
 }

@@ -21,9 +21,19 @@
       <button id='btnMute' class='mute' title='mute' onclick='muteVolume();'>Mute</button>
       <button id='btnFullScreen' class='fullscreen' title='toggle full screen' accesskey="T" onclick='toggleFullScreen();'>[&nbsp;&nbsp;]</button>
     </div>
+    <div id="ad-wrapper">
+      <div id="ad-container"></div>
+      <div id='ad-controls'>
+        <progress id='ad-progress-bar' min='0' max='100' value='0'>0% played</progress>
+        <button id='ad-btnReplay' class='replay' title='replay' accesskey="R" onclick='replayAdVideo();'>Replay</button>
+        <button id='ad-btnPlayPause' class='play' title='play' accesskey="P" onclick='playPauseAdVideo();'>Play</button>
+        <button id='ad-btnStop' class='stop' title='stop' accesskey="X" onclick='stopAdVideo();'>Stop</button>
+        <input type="range" id="ad-volume-bar" title="volume" min="0" max="1" step="0.1" value="1">
+        <button id='ad-btnMute' class='mute' title='mute' onclick='muteAdVolume();'>Mute</button>
+        <button id='ad-btnFullScreen' class='fullscreen' title='toggle full screen' accesskey="T" onclick='toggleAdFullScreen();'>[&nbsp;&nbsp;]</button>
+      </div>
+    </div>
   </div>
-
-  <div id="adContainer"></div>
 
   <div style="clear:both"></div>
   <p>Video courtesy of <a href="http://www.bigbuckbunny.org/" target="_blank">Big Buck Bunny</a>.</p>
