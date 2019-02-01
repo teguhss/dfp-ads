@@ -149,7 +149,6 @@ function onContentResumeRequested() {
   // This function is where you should ensure that your UI is ready
   // to play content.
   document.getElementById('ad-wrapper').style.display = "none";
-  document.getElementById('content-wrapper').style.display = "block";
   videoContent.addEventListener('ended', contentEndedListener);
   clearInterval(countdownTimer);
   videoContent.play();
