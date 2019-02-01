@@ -68,17 +68,76 @@ function onAdsManagerLoaded(adsManagerLoadedEvent) {
     // start at this time; this call will be ignored for ad rules, as ad rules
     // ads start when the adsManager is initialized.
     adsManager.start();
-    countdownTimer = setInterval(function () {
-      var timeRemaining = adsManager.getRemainingTime();
-      console.log(timeRemaining);
-      if (timeRemaining <= 0) {
-        clearInterval(countdownTimer);
-      }
-    }, 1000);
   } catch (adError) {
     // An error may be thrown if there was a problem with the VAST response.
     // Play content here, because we won't be getting an ad.
     videoContent.play();
+  }
+}
+
+adsLoader.requestAds(adsRequest);
+
+adBtnPlayPause = document.getElementById('ad-btnPlayPause');
+adBtnMute = document.getElementById('ad-btnMute');
+adProgressBar = document.getElementById('ad-progress-bar');
+adVolumeBar = document.getElementById('ad-volume-bar');
+
+var duration = undefined;
+countdownTimer = setInterval(function () {
+  if (adsManager) {
+    var timeRemaining = adsManager.getRemainingTime();
+    if (!duration && timeRemaining > 0) {
+      duration = timeRemaining;
+    }
+    if (adsManager.getVolume() === 0) {
+      changeButtonType(adBtnMute, 'unmute');
+    }
+    var percent = (1.0 - timeRemaining / duration) * 100;
+    adProgressBar.value = percent;
+    adProgressBar.innerHTML = percent + '% played';
+    console.log(timeRemaining);
+  }
+}, 50);
+
+var paused = false;
+changeButtonType(adBtnPlayPause, 'pause');
+function playPauseAdVideo() {
+  if (paused) {
+    adsManager.resume();
+    changeButtonType(adBtnPlayPause, 'pause');
+  } else {
+    adsManager.pause();
+    changeButtonType(adBtnPlayPause, 'play');
+  }
+  paused = !paused;
+}
+
+function changeButtonType(btn, value) {
+  btn.title = value;
+  btn.innerHTML = value;
+  btn.className = value;
+}
+
+function replayAdVideo() {
+  adsManager.start();
+  paused = false;
+  changeButtonType(adBtnPlayPause, 'pause');
+}
+
+function stopAdVideo() {
+  adsManager.stop();
+}
+
+function muteAdVolume() {
+  if (adsManager.getVolume() === 0) {
+    // Change the button to a mute button
+    changeButtonType(adBtnMute, 'mute');
+    adsManager.setVolume(1);
+  }
+  else {
+    // Change the button to an unmute button
+    changeButtonType(adBtnMute, 'unmute');
+    adsManager.setVolume(0);
   }
 }
 
@@ -92,9 +151,9 @@ function onContentPauseRequested() {
 function onContentResumeRequested() {
   // This function is where you should ensure that your UI is ready
   // to play content.
-  document.getElementById('ad-wrapper').hidden = true;
+  document.getElementById('ad-wrapper').style.display = "none";
+  document.getElementById('content-wrapper').style.display = "block";
   videoContent.addEventListener('ended', contentEndedListener);
+  clearInterval(countdownTimer);
   videoContent.play();
 }
-
-adsLoader.requestAds(adsRequest);

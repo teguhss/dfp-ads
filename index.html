@@ -8,29 +8,29 @@
 <body>
   <h1>Custom HTML5 Video Player Demo</h1>
   <div id='player'>
-    <video id='video-element' muted>
-      <source src='https://www.w3schools.com/html/mov_bbb.mp4' type='video/mp4'>
-      <source src='https://www.w3schools.com/html/mov_bbb.ogg' type='video/ogg'>
-    </video>
-    <div id='controls'>
-      <progress id='progress-bar' min='0' max='100' value='0'>0% played</progress>
-      <button id='btnReplay' class='replay' title='replay' accesskey="R" onclick='replayVideo();'>Replay</button>
-      <button id='btnPlayPause' class='play' title='play' accesskey="P" onclick='playPauseVideo();'>Play</button>
-      <button id='btnStop' class='stop' title='stop' accesskey="X" onclick='stopVideo();'>Stop</button>
-      <input type="range" id="volume-bar" title="volume" min="0" max="1" step="0.1" value="1">
-      <button id='btnMute' class='mute' title='mute' onclick='muteVolume();'>Mute</button>
-      <button id='btnFullScreen' class='fullscreen' title='toggle full screen' accesskey="T" onclick='toggleFullScreen();'>[&nbsp;&nbsp;]</button>
+    <div id="content-wrapper" style="display:none">
+      <video id='video-element' muted>
+        <source src='https://www.w3schools.com/html/mov_bbb.mp4' type='video/mp4'>
+        <source src='https://www.w3schools.com/html/mov_bbb.ogg' type='video/ogg'>
+      </video>
+      <div id='controls'>
+        <progress id='progress-bar' min='0' max='100' value='0'>0% played</progress>
+        <button id='btnReplay' class='replay' title='replay' accesskey="R" onclick='replayVideo();'>Replay</button>
+        <button id='btnPlayPause' class='play' title='play' accesskey="P" onclick='playPauseVideo();'>Play</button>
+        <button id='btnStop' class='stop' title='stop' accesskey="X" onclick='stopVideo();'>Stop</button>
+        <input type="range" id="volume-bar" title="volume" min="0" max="1" step="0.1" value="1">
+        <button id='btnMute' class='mute' title='mute' onclick='muteVolume();'>Mute</button>
+        <button id='btnFullScreen' class='fullscreen' title='toggle full screen' accesskey="T" onclick='toggleFullScreen();'>[&nbsp;&nbsp;]</button>
+      </div>
     </div>
-    <div id="ad-wrapper">
+    <div id="ad-wrapper" style='position:relative;z-index: 1;'>
       <div id="ad-container"></div>
       <div id='ad-controls'>
-        <progress id='ad-progress-bar' min='0' max='100' value='0'>0% played</progress>
         <button id='ad-btnReplay' class='replay' title='replay' accesskey="R" onclick='replayAdVideo();'>Replay</button>
+        <progress id='ad-progress-bar' min='0' max='100' value='0'>0% played</progress>
         <button id='ad-btnPlayPause' class='play' title='play' accesskey="P" onclick='playPauseAdVideo();'>Play</button>
         <button id='ad-btnStop' class='stop' title='stop' accesskey="X" onclick='stopAdVideo();'>Stop</button>
-        <input type="range" id="ad-volume-bar" title="volume" min="0" max="1" step="0.1" value="1">
         <button id='ad-btnMute' class='mute' title='mute' onclick='muteAdVolume();'>Mute</button>
-        <button id='ad-btnFullScreen' class='fullscreen' title='toggle full screen' accesskey="T" onclick='toggleAdFullScreen();'>[&nbsp;&nbsp;]</button>
       </div>
     </div>
   </div>

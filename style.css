@@ -93,6 +93,10 @@ progress[value]::-webkit-progress-value {
   background-color: green;
 }
 
+#ad-progress-bar {
+  width: 500px;
+}
+
 input[type=range] {
   -webkit-appearance: none;
   width: 100%;
