@@ -1,0 +1,10 @@
+<script>
+  window.document.addEventListener('myCustomEvent', handleEvent, false)
+  function handleEvent(e) {
+    var data = e.detail;
+    var event = new CustomEvent('myCustomEvent', { detail: data });
+    window.parent.document.dispatchEvent(event);
+  }
+</script>
+<iframe src="third-party.html">
+</iframe>

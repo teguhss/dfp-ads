@@ -24,6 +24,25 @@
       googletag.cmd.push(function () { googletag.display('div-gpt-ad-1549015173109-0'); });
     </script>
   </div>
+  <iframe></iframe>
+  <script>
+    var iframe = null;
+    var checkIframe = setInterval(function () {
+      iframe = document.getElementsByTagName('iframe')[0];
+      console.log(iframe);
+      if (iframe) {
+        var innerDoc = (iframe.contentDocument)
+          ? iframe.contentDocument
+          : iframe.contentWindow.document;
+        var video = innerDoc.getElementById('video-element');
+        console.log(video);
+        video.addEventListener('ended', function () {
+          console.log('hahaha');
+        }, false);
+        clearInterval(checkIframe);
+      }
+    }, 500);
+  </script>
 </body>
 
 </html>
