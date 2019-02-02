@@ -34,7 +34,10 @@ videoContent.onended = contentEndedListener;
 
 // Request video ads.
 var adsRequest = new google.ima.AdsRequest();
-adsRequest.adTagUrl = 'https://pubads.g.doubleclick.net/gampad/ads?iu=/136715487/freesky_test_front_end/freesky_test_front_end_video&description_url=http%3A%2F%2Fgoogle.com&env=vp&impl=s&correlator=&tfcd=0&npa=0&gdfp_req=1&output=vast&sz=400x300&unviewed_position_start=1'
+var googleAds = 'https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/single_ad_samples&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=deployment%3Ddevsite%26sample_ct%3Dlinear&correlator=';
+var interstitialAds = 'https://pubads.g.doubleclick.net/gampad/ads?sz=320x50|250x250|336x280|728x90|468x60|970x90|120x240|300x100|88x31|160x600|234x60|180x150|200x200|120x600|120x60|125x125|240x400|300x600|1x1|300x250|400x300|120x90&iu=/136715487/freesky_test_front_end/freesky_test_front_end_interstitial&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&url=http%3A%2F%2Fgoogle.com&description_url=http%3A%2F%2Fgoogle.com&correlator=';
+var videoAds = 'https://pubads.g.doubleclick.net/gampad/ads?iu=/136715487/freesky_test_front_end/freesky_test_front_end_video&description_url=http%3A%2F%2Fgoogle.com&env=vp&impl=s&correlator=&tfcd=0&npa=0&gdfp_req=1&output=vast&sz=400x300&unviewed_position_start=1';
+adsRequest.adTagUrl = videoAds;
 
 // Specify the linear and nonlinear slot sizes. This helps the SDK to
 // select the correct creative if multiple are returned.
