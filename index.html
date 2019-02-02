@@ -18,28 +18,39 @@
 </head>
 
 <body>
+  <h1>This is Your Content</h1>
   <!-- /136715487/freesky_test_front_end -->
-  <div id='div-gpt-ad-1549015173109-0' style='height:480px; width:640px;'>
-    <script>
-      googletag.cmd.push(function () { googletag.display('div-gpt-ad-1549015173109-0'); });
-      var iframe = null;
-      var checkIframe = setInterval(function () {
-        var adsDiv = document.getElementById('div-gpt-ad-1549015173109-0');
-        iframe = adsDiv.getElementsByTagName('iframe')[0];
-        console.log(iframe);
-        if (iframe) {
-          var innerDoc = (iframe.contentDocument)
-            ? iframe.contentDocument
-            : iframe.contentWindow.document;
-          var video = innerDoc.getElementById('video-element');
-          console.log(video);
-          video.addEventListener('ended', function () {
-            console.log('Video Ended Detected');
-          }, false);
-          clearInterval(checkIframe);
-        }
-      }, 500);
-    </script>
+  <div id="interstitial" style="background-color: black; position: absolute;
+        z-index: 100; height: 100%; width: 100%; top: 0; left: 0;
+        display: flex; flex-direction: column; justify-content: center; align-items: center;">
+    <div id='div-gpt-ad-1549015173109-0' style='height:480px; width:640px;'>
+      <script>
+        googletag.cmd.push(function () { googletag.display('div-gpt-ad-1549015173109-0'); });
+        var iframe = null;
+        var checkIframe = setInterval(function () {
+          var adsDiv = document.getElementById('div-gpt-ad-1549015173109-0');
+          iframe = adsDiv.getElementsByTagName('iframe');
+          if (iframe && iframe[0]) {
+            iframe = iframe[0];
+            console.log(iframe);
+            var innerDoc = (iframe.contentDocument)
+              ? iframe.contentDocument
+              : iframe.contentWindow.document;
+            var video = innerDoc.getElementsByTagName('video');
+            if (video && video[0]) {
+              video = video[0];
+              console.log(video);
+              video.play();
+              video.addEventListener('ended', function () {
+                console.log('Video Ended Detected');
+                document.getElementById('interstitial').style.display = 'none';
+              }, false);
+              clearInterval(checkIframe);
+            }
+          }
+        }, 500);
+      </script>
+    </div>
   </div>
 </body>
 
