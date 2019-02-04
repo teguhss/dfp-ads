@@ -10,7 +10,7 @@
 
   <script>
     googletag.cmd.push(function () {
-      googletag.defineSlot('/136715487/freesky_test_front_end', [640, 480], 'div-gpt-ad-1549015173109-0').addService(googletag.pubads());
+      googletag.defineSlot('/136715487/freesky_test_front_end', [640, 480], 'div-gpt-ad-1549247937849-0').addService(googletag.pubads());
       googletag.pubads().enableSingleRequest();
       googletag.enableServices();
     });
@@ -23,12 +23,12 @@
   <div id="interstitial" style="background-color: black; position: absolute;
         z-index: 100; height: 100%; width: 100%; top: 0; left: 0;
         display: flex; flex-direction: column; justify-content: center; align-items: center;">
-    <div id='div-gpt-ad-1549015173109-0' style="height: 480px; width: 640px;">
+    <div id='div-gpt-ad-1549247937849-0' style='height:480px; width:640px;'>
       <script>
-        googletag.cmd.push(function () { googletag.display('div-gpt-ad-1549015173109-0'); });
+        googletag.cmd.push(function () { googletag.display('div-gpt-ad-1549247937849-0'); });
         var iframe = null;
         var checkIframe = setInterval(function () {
-          var adsDiv = document.getElementById('div-gpt-ad-1549015173109-0');
+          var adsDiv = document.getElementById('div-gpt-ad-1549247937849-0');
           iframe = adsDiv.getElementsByTagName('iframe');
           if (iframe && iframe[0]) {
             iframe = iframe[0];
@@ -44,7 +44,7 @@
               video.play();
               video.addEventListener('ended', function () {
                 console.log('Video Ended Detected');
-                //document.getElementById('interstitial').style.display = 'none';
+                document.getElementById('interstitial').style.display = 'none';
               }, false);
               clearInterval(checkIframe);
             }
