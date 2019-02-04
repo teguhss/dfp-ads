@@ -25,6 +25,14 @@
         display: flex; flex-direction: column; justify-content: center; align-items: center;">
     <div id='div-gpt-ad-1549247937849-0' style='height:480px; width:640px;'>
       <script>
+        window.addEventListener('message', function (event) {
+          var data = event.data;
+          if (data.type && data.type === 'adMessage') {
+            console.log(event.data);
+            document.getElementById('interstitial').style.display = 'none';
+          }
+        });
+
         googletag.cmd.push(function () { googletag.display('div-gpt-ad-1549247937849-0'); });
         var iframe = null;
         var checkIframe = setInterval(function () {
@@ -34,19 +42,27 @@
             iframe = iframe[0];
             iframe.style.width = iframe.style.height = '100%';
             console.log(iframe);
-            var innerDoc = (iframe.contentDocument)
-              ? iframe.contentDocument
-              : iframe.contentWindow.document;
-            var video = innerDoc.getElementsByTagName('video');
-            if (video && video[0]) {
-              video = video[0];
-              console.log(video);
-              video.play();
-              video.addEventListener('ended', function () {
-                console.log('Video Ended Detected');
-                document.getElementById('interstitial').style.display = 'none';
-              }, false);
-              clearInterval(checkIframe);
+            try {
+              var innerDoc = (iframe.contentDocument)
+                ? iframe.contentDocument
+                : iframe.contentWindow.document;
+              var video = innerDoc.getElementsByTagName('video');
+              if (video && video[0]) {
+                video = video[0];
+                console.log(video);
+                video.muted = true;
+                video.play();
+                video.addEventListener('ended', function () {
+                  console.log('Video Ended Detected');
+                  document.getElementById('interstitial').style.display = 'none';
+                }, false);
+                clearInterval(checkIframe);
+              }
+            } catch (err) {
+              console.log(err.toString());
+              if (err.toString().includes('Blocked a frame with origin')) {
+                clearInterval(checkIframe);
+              }
             }
           }
         }, 500);
